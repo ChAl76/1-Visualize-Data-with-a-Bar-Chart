@@ -38,4 +38,18 @@ fetch(url)
       .attr('id', 'y-axis')
       .attr('transform', `translate(${padding}, 0)`)
       .call(yAxis);
+
+    svg
+      .selectAll('.bar')
+      .data(dataset)
+      .enter()
+      .append('rect')
+      .attr('class', 'bar')
+      .attr('x', (d) => xScale(new Date(d[0])))
+      .attr('y', (d) => yScale(d[1]))
+      .attr('width', (width - 2 * padding) / dataset.length)
+      .attr('height', (d) => height - padding - yScale(d[1]))
+      .attr('data-date', (d) => d[0])
+      .attr('data-gdp', (d) => d[1])
+      .attr('fill', '#00ff3c');
   });
