@@ -63,7 +63,7 @@ fetch(url)
           .html(`Date: ${d[0]}<br>GDP: ${d[1]}`)
           .attr('data-date', d[0])
           .style('left', `${event.pageX - 300}px`)
-          .style('top', `${event.pageY - 200}px`);
+          .style('top', `${event.pageY - 300}px`);
       })
       .on('mouseout', () => tooltip.style('opacity', 0));
   });
