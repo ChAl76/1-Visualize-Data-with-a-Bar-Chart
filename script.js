@@ -52,4 +52,18 @@ fetch(url)
       .attr('data-date', (d) => d[0])
       .attr('data-gdp', (d) => d[1])
       .attr('fill', '#00ff3c');
+
+    const tooltip = d3.select('#tooltip');
+
+    svg
+      .selectAll('.bar')
+      .on('mouseover', (event, d) => {
+        tooltip
+          .style('opacity', 0.8)
+          .html(`Date: ${d[0]}<br>GDP: ${d[1]}`)
+          .attr('data-date', d[0])
+          .style('left', `${event.pageX - 300}px`)
+          .style('top', `${event.pageY - 200}px`);
+      })
+      .on('mouseout', () => tooltip.style('opacity', 0));
   });
