@@ -3,6 +3,11 @@
   padding: 0;
 }
 
+body {
+  box-sizing: border-box;
+  background-color: #6a9189;
+}
+
 main {
   height: 100vh;
   width: 100vw;
@@ -10,7 +15,6 @@ main {
   align-items: center;
   justify-content: center;
   font-family: 'Tahoma', Geneva, Verdana, sans-serif;
-  background-color: #6a9189;
   background-size: 64px 128px;
 }
 
