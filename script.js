@@ -7,6 +7,7 @@ fetch(url)
     const dataset = data.data;
     const width = 850,
       height = 450,
+      barWidth = width / dataset.length,
       padding = 50;
 
     const svg = d3.select('#svg').attr('width', width).attr('height', height);
@@ -47,23 +48,28 @@ fetch(url)
       .attr('class', 'bar')
       .attr('x', (d) => xScale(new Date(d[0])))
       .attr('y', (d) => yScale(d[1]))
-      .attr('width', (width - 2 * padding) / dataset.length)
+      .attr('width', barWidth)
       .attr('height', (d) => height - padding - yScale(d[1]))
-      .attr('data-date', (d) => d[0])
-      .attr('data-gdp', (d) => d[1])
       .attr('fill', '#00ff3c');
 
-    const tooltip = d3.select('#tooltip');
+    const tooltip = d3.select('#tooltip').style('opacity', 0);
 
     svg
       .selectAll('.bar')
       .on('mouseover', (event, d) => {
+        tooltip.transition().duration(100).style('opacity', 0.9);
         tooltip
-          .style('opacity', 0.8)
-          .html(`Date: ${d[0]}<br>GDP: ${d[1]}`)
+          .html(
+            `${d[0]}<br>$${d3
+              .format('.1f')(d[1])
+              .replace(/\B(?=(\d{3})+(?!\d))/g, ',')} Billion`
+          )
           .attr('data-date', d[0])
-          .style('left', `${event.pageX - 300}px`)
-          .style('top', `${event.pageY - 300}px`);
+          .style('left', event.barWidth + 'px')
+          .style('top', height - 150 + 'px')
+          .style('transform', 'translateX(250px)');
       })
-      .on('mouseout', () => tooltip.style('opacity', 0));
+      .on('mouseout', function () {
+        tooltip.transition().duration(100).style('opacity', 0);
+      });
   });
