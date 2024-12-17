@@ -6,35 +6,30 @@
 body {
   box-sizing: border-box;
   background-color: #6a9189;
+
+  font: 11px sans-serif;
+  width: 100%;
+  height: 100%;
+  padding-top: 150px;
+  padding-bottom: 100px;
 }
 
-main {
-  height: 100vh;
-  width: 100vw;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  font-family: 'Tahoma', Geneva, Verdana, sans-serif;
-  background-size: 64px 128px;
-}
+.chart {
+  display: block;
+  margin: auto;
 
-main .container {
   height: 500px;
   width: 850px;
   background-color: #fff;
-  display: flex;
-  flex-direction: column;
   padding: 30px;
   position: relative;
   box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.2);
   border-radius: 5px;
 }
 
-main .container #title {
-  text-align: center;
+#title {
   font-family: 'Times New Roman', Times, serif;
-  font-size: 2.2em;
-  margin-bottom: 10px;
+  font-weight: 800;
 }
 
 .bar {
@@ -49,21 +44,16 @@ main .container #title {
 }
 
 #tooltip {
-  display: flex;
-  align-items: center;
-  justify-content: center;
   position: absolute;
-  width: 150px;
-  height: auto;
   padding: 10px;
-  font-size: 12px;
-  background: #323232;
-  color: white;
-  border-radius: 3px;
-  box-shadow: 1px 1px 10px #000;
+  color: #f4fffd;
+  font: 12px;
+  font-family: Verdana, sans-serif;
+  background: #707b88;
+  border: 0px;
+  border-radius: 8px;
   pointer-events: none;
-  opacity: 0;
-  transition: opacity 0.5s ease;
+  opacity: 0.9;
 }
 
 .overlay {
